@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CalCal</title>
+    <link rel="icon" type="image/png" href="cal.png"/>
+</head>
+<body>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI light';
+        }
+        body{
+            width: 100%;
+            min-height:100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: black;
+        }
+        .container{
+            max-width: 600px;
+            background: linear-gradient(45deg, red, orange);
+            border-radius: 5px;
+            width:600px;
+            padding: 20px;
+            box-shadow: 20px,20px 30px 30px black;
+
+        }
+        .wrap{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 40px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid white;
+
+        }
+        .add{
+            text-decoration: none;
+            display: inline-block;
+            width:40px;
+            height:40px;
+            color:white;
+            background: greenyellow;
+            font-size: 40px;
+            font-weight: bold;
+            justify-content: center;
+            align-items: center;
+
+        }
+        /*Dynamic Class Creation*/
+        .flex{
+            display: flex;
+            gap: 1.5em;
+            margin-bottom: 15px;
+        }
+        .delete{
+            text-decoration: none;
+            display: inline-block;
+            background: red;
+            font-size: 1.5rem;
+            font-weight: bold;
+            width: 30px;
+            height: 30px;
+            color: aliceblue;
+            margin-left: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: crosshair;
+
+        }
+        input{
+            padding: 5px 10px;
+            background: rgb(255, 255, 255);
+            border: nine;
+            width: 50%;
+            border-radius: 5px;
+
+        }
+        input:focus{
+            outline: 1px solid red;
+        }
+        .inp-group{
+            margin-bottom: 20px;
+
+        }
+        .res{
+            padding: 10px 10px;
+            border: five;
+            width: 500px;
+            border-radius: 10px;
+        }
+
+    </style>
+
+
+    <div class="container">
+        <div class="wrap">
+            <h2>Calculate Total Calories in Apples metric!</h2>
+            <a href="#" class="add">&plus;</a>
+            
+        </div>
+        <div class="inpgroup">
+                                        
+        </div>
+        <div>
+            <input type="button" value="Calculate" onclick="sum()">
+        </div>
+        <div class="res">
+            <input type="text" id="TotalCal" placeholder="Total Calories Consumed">
+            <input type="text" id="TotalApples" placeholder="Result In Terms of Apples Consumed">
+        </div>
+
+    </div>   
+</body>
+</html>
+
+<script>
+
+    const addBtn = document.querySelector(".add");
+
+    const input = document.querySelector(".inpgroup");
+
+    const result = document.querySelector(".cal");
+
+    addBtn.addEventListener("click", addInput);
+
+ 
+    
+    
+    function sum(){
+
+    const collection = document.getElementsByClassName("food");
+    const c=0;
+    var res123=c;
+        for (let i=0; i < collection.length; i++) {
+
+        console.log(collection[i].value);
+        res123 =res123+parseInt((collection[i]).value);
+        console.log(c);
+        console.log(res123);
+        document.getElementById("TotalCal").value=res123+" Calories";
+    }
+
+    const totapples= res123/100;
+    console.log(totapples);
+    document.getElementById("TotalApples").value=totapples+" Apples";
+
+        
+    }
+   
+    function removeInput(){
+        this.parentElement.remove();
+    }
+
+
+    function addInput(){
+        const name = document.createElement("input");
+        name.type="number";
+        name.placeholder="Enter calories per food item";
+        name.className="food";
+
+        const btn=document.createElement("a");
+        btn.className= "delete";
+        btn.innerHTML= "&times";
+
+        btn.addEventListener("click", removeInput);
+        
+        const flex=document.createElement("div");
+        flex.className="flex";
+
+        input.appendChild(flex);
+        flex.appendChild(name);
+        flex.appendChild(btn);
+
+
+    }
+   
+
+</script>
